@@ -1,0 +1,15 @@
+{
+  "name": "drewbrucker-claude-skills",
+  "owner": {
+    "name": "Drew Brucker",
+    "url": "https://drewcbrucker.com"
+  },
+  "description": "Eleven slash-command skills for thinking, writing, podcast production, and ops. White-labeled from a working consultant stack.",
+  "plugins": [
+    {
+      "name": "drewbrucker-skills",
+      "source": "./",
+      "description": "All eleven skills: beastmode, blindspot, domainjack, triage, adopt, ghost, fleet, mine, youtube, redline, graph."
+    }
+  ]
+}

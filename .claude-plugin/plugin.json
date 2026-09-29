@@ -1,0 +1,15 @@
+{
+  "name": "drewbrucker-skills",
+  "displayName": "Drew Brucker's Skills",
+  "version": "1.0.0",
+  "description": "Eleven slash-command skills: prompt amplification, idea generation and triage, voice-locked drafting, transcript mining, episode packaging, contract review, and system diagrams.",
+  "author": {
+    "name": "Drew Brucker",
+    "url": "https://drewcbrucker.com"
+  },
+  "homepage": "https://github.com/dcbruck/claude-skills",
+  "repository": "https://github.com/dcbruck/claude-skills",
+  "license": "MIT",
+  "keywords": ["skills", "prompting", "writing", "podcast", "contracts", "ideation"],
+  "skills": ["./skills/"]
+}
