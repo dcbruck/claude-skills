@@ -2,7 +2,7 @@
 
 Every skill is one folder under `skills/` with a `SKILL.md` inside. Pick the route that matches where you use Claude.
 
-## Claude Code: all eleven as a plugin
+## Claude Code: all twelve as a plugin
 
 ```bash
 claude plugin marketplace add dcbruck/claude-skills
@@ -34,6 +34,8 @@ Restart the session. The skill shows up as `/triage`.
 
 ## Claude desktop app and claude.ai
 
+Fastest route: download the skill's zip from the [latest release](https://github.com/dcbruck/claude-skills/releases/latest) and skip to step 2. Every release ships one ready-to-upload zip per skill.
+
 1. Zip the skill folder so the zip contains the folder itself, not just its files:
    ```bash
    cd skills && zip -r ../triage.zip triage
@@ -50,11 +52,11 @@ Some skills read or write files. Each one says which in its `## Setup` section. 
 
 | Path | Used by |
 |---|---|
-| `voice-profile.md` | ghost, fleet, mine (optional) |
-| `kill-list.md` | ghost, fleet |
-| `.skills-data/` | beastmode, triage, adopt, mine, fleet, youtube, redline (logs, ledgers, libraries) |
+| `voice-profile.md` | post, ghost, fleet, mine (optional) |
+| `kill-list.md` | post, ghost, fleet |
+| `.skills-data/` | beastmode, triage, adopt, post, mine, fleet, youtube, redline (logs, ledgers, libraries) |
 
-Start the two voice files from `templates/`. The `.skills-data/` folder is created on first use; add it to `.gitignore` if you do not want logs committed.
+Start the two voice files from `templates/`. The `.skills-data/` folder is created on first use; add it to `.gitignore` if you don't want logs committed.
 
 ## Cross-skill routes
 

@@ -1,6 +1,6 @@
 ---
 name: ghost
-description: Manual voice-locked content drafter. ONLY triggers when the user explicitly types /ghost followed by a content type and topic (e.g. "/ghost email to Acme confirming kickoff" or "/ghost newsletter section on AI brand voice"). Do NOT auto-fire on natural-language asks like "draft me an email" or "write a newsletter". /ghost is the explicit slash command for non-LinkedIn written content (emails, proposals, newsletters, scripts, page copy, pitch deck copy, podcast intros, general copy). It loads the user's voice profile and kill list, drafts from every voice dimension, runs a seven-step audit gate, and returns the clean draft only. Refuses to skip the audit. LinkedIn posts are out of scope; use /fleet for episode-derived posts or draft them directly. Not for auditing pasted text or remixing a long-form source.
+description: Manual voice-locked content drafter. ONLY triggers when the user explicitly types /ghost followed by a content type and topic (e.g. "/ghost email to Acme confirming kickoff" or "/ghost newsletter section on AI brand voice"). Do NOT auto-fire on natural-language asks like "draft me an email" or "write a newsletter". /ghost is the explicit slash command for non-LinkedIn written content (emails, proposals, newsletters, scripts, page copy, pitch deck copy, podcast intros, general copy). It loads the user's voice profile and kill list, drafts from every voice dimension, runs a seven-step audit gate, and returns the clean draft only. Refuses to skip the audit. LinkedIn posts are out of scope; use /post for a single post or /fleet for episode-derived posts. Not for auditing pasted text or remixing a long-form source.
 license: MIT
 metadata:
   version: 1.0.0
@@ -45,7 +45,7 @@ Examples:
 
 Does NOT fire on "draft an email," "write a newsletter," or "put together copy." Those are ordinary requests, handled outside this skill.
 
-LinkedIn posts are out of scope for /ghost; use /fleet for episode-derived posts or draft them directly. Auditing already-written text and remixing a long-form source are also out of scope.
+LinkedIn posts are out of scope for /ghost; use /post for a single post or /fleet for episode-derived posts. Auditing already-written text and remixing a long-form source are also out of scope.
 
 ## Step 1: load the required files (refuse if missing)
 
@@ -206,7 +206,7 @@ The skill refuses to proceed when:
 2. **"Skip the audit" is requested.** Refuse. The audit is the product. Without it the draft is just AI writing.
 3. **"Just give me a quick draft" is requested.** Refuse. /ghost is the full-enforcement skill. Fast unaudited drafts happen outside it.
 4. **Two rewrite cycles cannot pass the gate on the same section.** Surface the specific blocker (which gate step, which tell, which voice element). Do not ship a failing draft.
-5. **The content type is a LinkedIn post.** Out of scope. Use /fleet for episode-derived posts or draft them directly.
+5. **The content type is a LinkedIn post.** Out of scope. Use /post for a single post or /fleet for episode-derived posts.
 6. **The request is audit-only on pasted text, or a remix of a long-form source.** Out of scope.
 
 It never:

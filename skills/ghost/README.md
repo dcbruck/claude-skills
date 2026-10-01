@@ -25,6 +25,7 @@ Add `--no-voice` to run with a plain first-person register before you have a voi
 
 **Pairs with**
 
+- `/post` for a single LinkedIn post
 - `/fleet` for episode-derived LinkedIn posts and companions
 - `/mine` for pulling seeds out of transcripts before drafting
 - `/beastmode` when the ask needs sharpening before it reaches /ghost
