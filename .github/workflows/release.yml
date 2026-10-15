@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/validate.py
+      - run: python3 scripts/validate.py "$GITHUB_REF_NAME"
       - name: Build zips
         run: |
           mkdir -p dist

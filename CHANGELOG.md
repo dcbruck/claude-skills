@@ -6,7 +6,8 @@
 - `/ghost` now routes LinkedIn posts to `/post`.
 - README: animated preview for each skill and a plain-language line on what each one does.
 - Every release now ships one upload-ready zip per skill for the Claude app and claude.ai.
-- Added a validation check that runs on every push.
+- Added a validation check that runs on every push. It also fails when the plugin version, the marketplace entry, the changelog, and the release tag disagree.
+- Install docs: Claude app and claude.ai uploads now point to Settings > Customize > Skills, with the paid-plan requirement stated.
 
 ## v1.0.0
 

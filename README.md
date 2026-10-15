@@ -36,7 +36,7 @@ claude plugin marketplace add dcbruck/claude-skills
 claude plugin install drewbrucker-skills@drewbrucker-claude-skills
 ```
 
-Claude desktop app or claude.ai: grab a skill's zip from the [latest release](https://github.com/dcbruck/claude-skills/releases/latest) and upload it under **Settings > Capabilities** (desktop) or **Settings > Customize > Skills** (web).
+Claude desktop app or claude.ai: grab a skill's zip from the [latest release](https://github.com/dcbruck/claude-skills/releases/latest) and upload it under **Settings > Customize > Skills > Add skill**. Uploads need a paid plan (Pro, Max, Team, or Enterprise).
 
 One skill in Claude Code, no plugin:
 

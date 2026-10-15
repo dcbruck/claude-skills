@@ -38,6 +38,23 @@ for f in (root / ".claude-plugin").glob("*.json"):
     except Exception as e:
         errors.append(f"{f.name}: invalid JSON ({e})")
 
+# Version sync. Claude Code only ships an update to existing installs when the
+# plugin version changes, so plugin.json, the marketplace entry, and the newest
+# CHANGELOG heading must all carry the same number.
+try:
+    plugin_v = json.loads((root / ".claude-plugin/plugin.json").read_text())["version"]
+    market = json.loads((root / ".claude-plugin/marketplace.json").read_text())
+    market_v = next(p.get("version") for p in market["plugins"] if p["name"] == "drewbrucker-skills")
+    log = re.search(r"^## v(\S+)", (root / "CHANGELOG.md").read_text(), re.M)
+    log_v = log.group(1) if log else None
+    if not (plugin_v == market_v == log_v):
+        errors.append(f"version mismatch: plugin.json {plugin_v}, marketplace.json {market_v}, CHANGELOG {log_v}")
+    tag = sys.argv[1] if len(sys.argv) > 1 else None
+    if tag and tag != f"v{plugin_v}":
+        errors.append(f"tag {tag} does not match plugin version v{plugin_v}")
+except Exception as e:
+    errors.append(f"version check failed ({e})")
+
 if errors:
     print("\n".join(errors))
     sys.exit(1)

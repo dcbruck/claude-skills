@@ -34,14 +34,15 @@ Restart the session. The skill shows up as `/triage`.
 
 ## Claude desktop app and claude.ai
 
+Skill uploads need a paid Claude plan (Pro, Max, Team, or Enterprise). On Team and Enterprise, an admin may have to turn skills on for the organization first.
+
 Fastest route: download the skill's zip from the [latest release](https://github.com/dcbruck/claude-skills/releases/latest) and skip to step 2. Every release ships one ready-to-upload zip per skill.
 
 1. Zip the skill folder so the zip contains the folder itself, not just its files:
    ```bash
    cd skills && zip -r ../triage.zip triage
    ```
-2. Desktop app: **Settings > Capabilities**, add a skill, upload the zip.
-   Web: **Settings > Customize > Skills**, upload the zip.
+2. Open **Settings > Customize > Skills**, click **Add skill**, and upload the zip. Same path on the desktop app and the web.
 3. Type `/triage` in any chat.
 
 Skills uploaded this way are per-account and do not sync back to Claude Code.
