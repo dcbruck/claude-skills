@@ -1,18 +1,40 @@
 name: release
-# Push a tag like v1.1.0 and this builds one upload-ready zip per skill
-# (for the Claude app and claude.ai) plus an all-skills zip, then publishes a release.
+# Bump the version in plugin.json, the marketplace entry, and CHANGELOG.md, then push
+# to main. If no release exists for that version yet, this tags the commit, builds one
+# upload-ready zip per skill (for the Claude app and claude.ai) plus an all-skills zip,
+# and publishes the release. Pushes that don't change the version are skipped.
 on:
   push:
-    tags: ["v*"]
+    branches: [main]
+  workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: release
+  cancel-in-progress: false
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/validate.py "$GITHUB_REF_NAME"
-      - name: Build zips
+      - name: Read version
+        id: v
+        run: echo "tag=v$(python3 -c 'import json;print(json.load(open(".claude-plugin/plugin.json"))["version"])')" >> "$GITHUB_OUTPUT"
+      - name: Skip if already released
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${{ steps.v.outputs.tag }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Release ${{ steps.v.outputs.tag }} already exists. Nothing to do."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.check.outputs.exists == 'false'
+        run: python3 scripts/validate.py "${{ steps.v.outputs.tag }}"
+      - if: steps.check.outputs.exists == 'false'
+        name: Build zips
         run: |
           mkdir -p dist
           cd skills
@@ -22,9 +44,11 @@ jobs:
           done
           cd ..
           zip -qr dist/all-skills.zip skills templates README.md INSTALL.md LICENSE
-      - name: Publish release
+      - if: steps.check.outputs.exists == 'false'
+        name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.v.outputs.tag }}
         run: |
-          notes=$(awk "/^## ${GITHUB_REF_NAME}/{f=1;next} /^## /{f=0} f" CHANGELOG.md)
-          gh release create "$GITHUB_REF_NAME" dist/*.zip --title "$GITHUB_REF_NAME" --notes "${notes:-Release $GITHUB_REF_NAME}"
+          notes=$(awk "/^## ${TAG}/{f=1;next} /^## /{f=0} f" CHANGELOG.md)
+          gh release create "$TAG" dist/*.zip --target "$GITHUB_SHA" --title "$TAG" --notes "${notes:-Release $TAG}"
