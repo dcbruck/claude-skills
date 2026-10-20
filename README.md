@@ -23,7 +23,7 @@ A skill is a set of instructions Claude loads on command. Type `/post` and Claud
 <tr>
 <td valign="top"><a href="skills/redline"><img src="media/redline.webp" alt="/redline"></a><br><b><code>/redline</code></b><br>Reads a contract before you sign and flags the risky terms, including protections that are missing entirely.</td>
 <td valign="top"><a href="skills/graph"><img src="media/graph.webp" alt="/graph"></a><br><b><code>/graph</code></b><br>Reads how any skill actually works and draws it as a diagram, messy parts and all.</td>
-<td valign="top"><a href="skills/triage"><b><code>/triage</code></b></a><br>Walks any list one item at a time, records your call and the reason, and banks it so the same idea never gets re-argued.</td>
+<td valign="top"><a href="skills/triage"><img src="media/triage.webp" alt="/triage"></a><br><b><code>/triage</code></b><br>Walks any list one item at a time, records your call and the reason, and banks it so the same idea never gets re-argued.</td>
 </tr>
 </table>
 

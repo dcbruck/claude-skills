@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1
+
+- README: animated preview for `/triage`, so all twelve skills now have one.
+
 ## v1.1.0
 
 - New skill: `/post`. Five LinkedIn post bodies in five architectures, drafted blind and audited to clean, hooks written last, three finished posts to pick from.
