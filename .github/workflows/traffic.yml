@@ -1,0 +1,46 @@
+name: traffic
+# Saves clones, views, referrers, top paths, and release zip downloads once a day to the
+# traffic-data branch, so the numbers outlast GitHub's 14-day traffic window.
+# Needs a TRAFFIC_TOKEN secret: a fine-grained token for this repo with
+# Administration: read. Without it, only release downloads are recorded.
+on:
+  schedule:
+    - cron: "17 10 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: traffic
+  cancel-in-progress: false
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out the data branch
+        run: |
+          if git ls-remote --exit-code --heads origin traffic-data >/dev/null; then
+            git fetch --depth 1 origin traffic-data
+            git worktree add data origin/traffic-data
+            git -C data switch -c traffic-data
+          else
+            git worktree add --orphan -b traffic-data data
+          fi
+      - name: Archive
+        env:
+          REPO: ${{ github.repository }}
+          TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/traffic.py data
+      - name: Commit
+        run: |
+          cd data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No change."
+          else
+            git commit -qm "traffic: $(date -u +%F)"
+            git push origin traffic-data
+          fi
