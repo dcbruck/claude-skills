@@ -1,8 +1,8 @@
 # Traffic archive for dcbruck/claude-skills
 
-Last updated 2026-11-23.
+Last updated 2026-11-24.
 
-**Clones since 2026-11-05:** 1448. Each `claude plugin marketplace add` is one clone.
+**Clones since 2026-11-05:** 1473. Each `claude plugin marketplace add` is one clone.
 **Views since 2026-11-05:** 47.
 
 Daily uniques are kept in the CSVs. They can't be added across days, because the same person counts once per day.
