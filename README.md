@@ -1,9 +1,9 @@
 # Traffic archive for dcbruck/claude-skills
 
-Last updated 2026-11-24.
+Last updated 2026-11-25.
 
-**Clones since 2026-11-05:** 1473. Each `claude plugin marketplace add` is one clone.
-**Views since 2026-11-05:** 47.
+**Clones since 2026-11-05:** 1483. Each `claude plugin marketplace add` is one clone.
+**Views since 2026-11-05:** 48.
 
 Daily uniques are kept in the CSVs. They can't be added across days, because the same person counts once per day.
 
@@ -33,6 +33,6 @@ Daily uniques are kept in the CSVs. They can't be added across days, because the
 |---|---|
 | ghost | 4 |
 | beastmode | 2 |
+| redline | 1 |
 | adopt | 1 |
 | domainjack | 1 |
-| fleet | 1 |
